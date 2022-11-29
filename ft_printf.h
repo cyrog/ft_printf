@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgross <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 19:41:56 by cgross            #+#    #+#             */
-/*   Updated: 2022/11/08 17:36:16 by cgross           ###   ########.fr       */
+/*   Updated: 2022/11/29 15:25:26 by cgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <unistd.h>
+# include <stdio.h>
 # include <stdarg.h>
+
 
 typedef struct	s_struct
 {
-	int	len;
-	int	width;
+	int				len;
+	int				width;
+	int				d;
+	char			*s;
+	char			c;
+	unsigned long	p;
 }					t_struct;
 
-char	*ft_strchr(const char *format);
+char	*ft_strchr(const char c, const char *format);
 int		ft_strlen(const char *format);
+int		ft_intlen(int nb);
+int		ft_putnbr(int nb);
+int		ft_putchar(char c);
+int		ft_putstr(char *s);
+int		ft_puthexa(unsigned int x);
 
 #endif

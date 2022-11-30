@@ -13,6 +13,9 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# define base16 "0123456789abcdef"
+# define BASE16 "0123456789ABCDEF"
+
 # include <unistd.h>
 # include <stdio.h>
 # include <stdarg.h>
@@ -32,8 +35,10 @@ char	*ft_strchr(const char c, const char *format);
 int		ft_strlen(const char *format);
 int		ft_intlen(int nb);
 int		ft_putnbr(int nb);
+int		ft_putunbr(unsigned int nb);
 int		ft_putchar(char c);
 int		ft_putstr(char *s);
-int		ft_puthexa(unsigned int x);
+int		ft_puthexa(unsigned int x, char *base);
+int		ft_putptr(unsigned long x, char *base, int start);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cgross <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:46:10 by cgross            #+#    #+#             */
-/*   Updated: 2022/11/29 17:02:52 by cgross           ###   ########.fr       */
+/*   Updated: 2022/11/29 17:09:15 by cgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,18 @@ int	search_arg(va_list arg, const char c)
 		return (ft_putchar(va_arg(arg, int)));
 	else if (c == 's')
 		return (ft_putstr(va_arg(arg, char*)));
-	else if (c == 'd')
+	else if (c == 'p')
+		return (ft_putptr(va_arg(arg, unsigned long), base16, 1));
+	else if (c == 'd' || c == 'i')
 		return (ft_putnbr(va_arg(arg, int)));
+	else if (c == 'u')
+		return (ft_putunbr(va_arg(arg, unsigned int)));
+	else if (c == 'x')
+		return (ft_puthexa(va_arg(arg, int), base16));
+	else if (c == 'X')
+		return (ft_puthexa(va_arg(arg, int), BASE16));
+	else if (c == '%')
+		return (ft_putchar('%'));
 	else
 		return (0);
 	return (0);
@@ -43,19 +53,31 @@ int	ft_printf(const char *format, ...)
 		i++;
 	}
 	va_end(arg);
-	printf("len:		%d\n", len);
 	return (len);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	char *test = "test";
-	char t = '\n';
+	char t = 't';
+	int x = 1243;	
+	int *ptr = &x;
 
 	ft_printf("test\n"); 
+	ft_printf("test%%\n"); 
+	printf("test%%\n"); 
 	ft_printf("d	:	test%d\n", 1243); 
+	printf("i	:	test%i\n", 1243); 
+	ft_printf("i	:	test%i\n", 1243); 
+	ft_printf("x	:	test%x\n", 1243); 
+	ft_printf("X	:	test%X\n", 1243); 
+	ft_printf("p	:	test%p\n", ptr); 
+	printf("p	:	test%p\n", ptr); 
+	printf("u	:	test%u\n", 1243); 
+	ft_printf("u	:	test%u\n", 1243); 
 	ft_printf("s	:	test%s\n", test); 
 	ft_printf("c	:	test%c\n", t); 
 	ft_printf("test\n");
 	return (0);
 }
+*/

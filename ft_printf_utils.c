@@ -72,7 +72,6 @@ int	ft_putstr(char *s)
 	return (i);
 }
 
-
 int	ft_putnbr(int n)
 {
 	int	len;
@@ -92,5 +91,57 @@ int	ft_putnbr(int n)
 	}
 	else
 		len += ft_putchar(n + '0');
+	return (len);
+}
+
+int	ft_putunbr(unsigned int n)
+{
+	int len;
+
+	len = 0;
+	if (n <= 9)
+		len += ft_putchar(n + '0');
+	else
+	{
+		len += ft_putunbr(n / 10);
+		len += ft_putunbr(n % 10);
+	}
+	return (len);
+}
+
+
+int	ft_puthexa(unsigned int n, char *base)
+{
+	int	len;
+
+	len = 0;
+	if (n >= 16)
+	{
+		len += ft_puthexa(n / 16, base);
+		len += ft_putchar(base[n % 16]);
+	}
+	else
+		ft_putchar(base[n]);
+	return (len);
+}
+
+int	ft_putptr(unsigned long x, char *base, int start)
+{
+	int				len;
+	unsigned long	i;
+
+	i = x;
+	len = 0;
+	if (x == 0)
+		len += ft_putstr("0x0");
+	if (start)
+		len += ft_putstr("0x");
+	if (x >= 16)
+	{
+		len += ft_putptr(i / 16, base, 0);
+		len += ft_putchar(base[i % 16]);
+	}
+	else
+		len += ft_putchar(base[i]);
 	return (len);
 }

@@ -17,17 +17,17 @@ int	search_arg(va_list arg, const char c)
 	if (c == 'c')
 		return (ft_putchar(va_arg(arg, int)));
 	else if (c == 's')
-		return (ft_putstr(va_arg(arg, char*)));
+		return (ft_putstr(va_arg(arg, char *)));
 	else if (c == 'p')
-		return (ft_putptr(va_arg(arg, unsigned long), base16, 1));
+		return (ft_putptr(va_arg(arg, unsigned long), BASE16, 1));
 	else if (c == 'd' || c == 'i')
 		return (ft_putnbr(va_arg(arg, int)));
 	else if (c == 'u')
 		return (ft_putunbr(va_arg(arg, unsigned int)));
 	else if (c == 'x')
-		return (ft_puthexa(va_arg(arg, int), base16));
+		return (ft_puthexa(va_arg(arg, unsigned int), BASE16));
 	else if (c == 'X')
-		return (ft_puthexa(va_arg(arg, int), BASE16));
+		return (ft_puthexa(va_arg(arg, unsigned int), CAP_BASE16));
 	else if (c == '%')
 		return (ft_putchar('%'));
 	else
@@ -37,11 +37,11 @@ int	search_arg(va_list arg, const char c)
 
 int	ft_printf(const char *format, ...)
 {
-	va_list		arg;
+	va_list	arg;
+	int		len;
+	int		i;
+
 	va_start(arg, format);
-	int len;
-	int	i;
-	
 	len = 0;
 	i = 0;
 	while (format[i])

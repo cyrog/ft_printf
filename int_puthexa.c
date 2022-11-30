@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   int_puthexa.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgross <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 19:44:27 by cgross            #+#    #+#             */
-/*   Updated: 2022/11/24 14:08:37 by cgross           ###   ########.fr       */
+/*   Created: 2022/11/08 17:22:09 by cgross            #+#    #+#             */
+/*   Updated: 2022/11/29 15:44:35 by cgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ... )
+int	ft_puthexa(unsigned int n, char *base)
 {
-	va_list	arg;
-	va_start(arg, format);
-	t_struct	sc;
-	sc.len = 0;
-	sc.width = 0;
+	int	len;
 
-	while (*format)
+	len = 0;
+	if (n >= 16)
 	{
-		if (!format)
-		{
-			write(1, "(null)", 6);
-			va_end(arg);
-			return (sc.len);
-		}
-		//else if (*format == '%')
-		else
-			*format = read_txt(sc, format);
+		len += ft_puthexa(n / 16, base);
+		len += ft_putchar(base[n % 16]);
 	}
-	va_end(arg);
-	return (sc.len);
+	else
+		len += ft_putchar(base[n]);
+	return (len);
 }

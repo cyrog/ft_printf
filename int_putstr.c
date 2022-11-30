@@ -1,48 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   int_putstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgross <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/25 13:48:49 by cgross            #+#    #+#             */
-/*   Updated: 2022/11/29 15:14:40 by cgross           ###   ########.fr       */
+/*   Created: 2022/11/08 17:22:09 by cgross            #+#    #+#             */
+/*   Updated: 2022/11/29 15:44:35 by cgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ... )
+int	ft_putchar(char c)
 {
-	int		len;
-	int		i;
-	va_list arg;
+	write(1, &c, 1);
+	return (1);
+}
 
-	va_start(arg, format);
-	i = 0;
+int	ft_putstr(char *s)
+{
+	int	len;
+
 	len = 0;
-	while (format[i])
+	if (!s)
+		return (ft_putstr("(null)"));
+	while (s[len])
 	{
-		if (format[i] == '%')
-			len += search_arg(arg, format[++i]);
-		else
-			len += ft_putchar(format[i]);
-		i++;
+		ft_putchar(s[len]);
+		len++;
 	}
-	va_end(arg);
 	return (len);
 }
-
-int	search_arg(va_list arg, const char c)
-{
-	if (c == 'c')
-		return (ft_putchar(va_arg(arg, int)));
-	else
-		return (0);
-}
-
-int	main(void)
-{
-	ft_printf("%c", 'c');
-}
-

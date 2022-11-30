@@ -12,66 +12,6 @@
 
 #include "ft_printf.h"
 
-int	ft_putchar(char c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-char	*ft_strchr(const char c, const char *s)
-{
-	if (!s)
-		return ((char *)s);
-	while (*s)
-	{
-		if (*s == c)
-			return ((char *)s);
-		s++;
-	}
-	return (NULL);
-}
-
-int		ft_strlen(const char *format)
-{
-	int	i;
-
-	i = 0;
-	while (format[i])
-		i++;
-	return i;
-}
-
-int		ft_intlen(int nb)
-{
-	int	i;
-	int	number;
-	int	neg;
-
-	i = 1;
-	neg = 1;
-	if (nb < 0)
-	{
-		neg = neg * -1;
-		number = -nb;
-	}
-	while (nb /= 10)
-		i++;
-	return (i);
-}
-
-int	ft_putstr(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		ft_putchar(s[i]);
-		i++;
-	}
-	return (i);
-}
-
 int	ft_putnbr(int n)
 {
 	int	len;
@@ -79,24 +19,24 @@ int	ft_putnbr(int n)
 	len = 0;
 	if (n == -2147483648)
 		return (ft_putstr("-2147483648"));
-	else if (n < 0)
+	if (n < 0)
 	{
 		len += ft_putchar('-');
 		n = -n;
 	}
-	else if (n > 9)
+	if (n <= 9)
+		len += ft_putchar(n + '0');
+	else
 	{
 		len += ft_putnbr(n / 10);
-		len += ft_putchar(n % 10 + '0');
+		len += ft_putnbr(n % 10);
 	}
-	else
-		len += ft_putchar(n + '0');
 	return (len);
 }
 
 int	ft_putunbr(unsigned int n)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	if (n <= 9)
@@ -106,42 +46,5 @@ int	ft_putunbr(unsigned int n)
 		len += ft_putunbr(n / 10);
 		len += ft_putunbr(n % 10);
 	}
-	return (len);
-}
-
-
-int	ft_puthexa(unsigned int n, char *base)
-{
-	int	len;
-
-	len = 0;
-	if (n >= 16)
-	{
-		len += ft_puthexa(n / 16, base);
-		len += ft_putchar(base[n % 16]);
-	}
-	else
-		ft_putchar(base[n]);
-	return (len);
-}
-
-int	ft_putptr(unsigned long x, char *base, int start)
-{
-	int				len;
-	unsigned long	i;
-
-	i = x;
-	len = 0;
-	if (x == 0)
-		len += ft_putstr("0x0");
-	if (start)
-		len += ft_putstr("0x");
-	if (x >= 16)
-	{
-		len += ft_putptr(i / 16, base, 0);
-		len += ft_putchar(base[i % 16]);
-	}
-	else
-		len += ft_putchar(base[i]);
 	return (len);
 }

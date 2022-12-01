@@ -55,29 +55,3 @@ int	ft_printf(const char *format, ...)
 	va_end(arg);
 	return (len);
 }
-
-/*int	main(void)
-{
-	char *test = "test";
-	char t = 't';
-	int x = 1243;	
-	int *ptr = &x;
-
-	ft_printf("test\n"); 
-	ft_printf("test%%\n"); 
-	printf("test%%\n"); 
-	ft_printf("d	:	test%d\n", 1243); 
-	printf("i	:	test%i\n", 1243); 
-	ft_printf("i	:	test%i\n", 1243); 
-	ft_printf("x	:	test%x\n", 1243); 
-	ft_printf("X	:	test%X\n", 1243); 
-	ft_printf("p	:	test%p\n", ptr); 
-	printf("p	:	test%p\n", ptr); 
-	printf("u	:	test%u\n", 1243); 
-	ft_printf("u	:	test%u\n", 1243); 
-	ft_printf("s	:	test%s\n", test); 
-	ft_printf("c	:	test%c\n", t); 
-	ft_printf("test\n");
-	return (0);
-}
-*/

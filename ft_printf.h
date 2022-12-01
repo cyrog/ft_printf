@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <stdarg.h>
 
+int		ft_printf(const char *format, ...);
 int		ft_putnbr(int nb);
 int		ft_putunbr(unsigned int nb);
 int		ft_putchar(char c);
